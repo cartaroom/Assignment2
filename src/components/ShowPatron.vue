@@ -2,22 +2,22 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Host
+        Edit Patron
       </h2>
-      <b-btn href="#/">HOST LIST</b-btn>
+      <b-btn href="#/patron-list">PATRON LIST</b-btn>
       <b-jumbotron>
         <template slot="header">
-          {{host.companyName}}
+          {{patron.name}}
         </template>
         <template slot="lead">
-          Company: {{host.companyName}}<br>
-          Address: {{host.address}}<br>
-          Email: {{host.email}}<br>
-          Phone: {{host.phoneNumber}}<br>
+          Name: {{patron.name}}<br>
+          Address: {{patron.address}}<br>
+          Email: {{patron.email}}<br>
+          Phone: {{patron.phoneNumber}}<br>
         </template>
         <hr class="my-4">
-        <b-btn class="edit-btn" variant="success" @click.stop="edithost(key)">Edit</b-btn>
-        <b-btn variant="danger" @click.stop="deletehost(key)">Delete</b-btn>
+        <b-btn class="edit-btn" variant="success" @click.stop="editpatron(key)">Edit</b-btn>
+        <b-btn variant="danger" @click.stop="deletepatron(key)">Delete</b-btn>
       </b-jumbotron>
     </b-col>
   </b-row>
@@ -29,35 +29,35 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'ShowHost',
+  name: 'ShowPatron',
   data () {
     return {
       key: '',
-      host: {}
+      patron: {}
     }
   },
   created () {
-    const ref = firebase.firestore().collection('host').doc(this.$route.params.id);
+    const ref = firebase.firestore().collection('patron').doc(this.$route.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
         this.key = doc.id;
-        this.host = doc.data();
+        this.patron = doc.data();
       } else {
         alert("No such document!");
       }
     });
   },
   methods: {
-    edithost (id) {
+    editpatron (id) {
       router.push({
-        name: 'EditHost',
+        name: 'EditPatron',
         params: { id: id }
       })
     },
-    deletehost (id) {
-      firebase.firestore().collection('host').doc(id).delete().then(() => {
+    deletepatron (id) {
+      firebase.firestore().collection('patron').doc(id).delete().then(() => {
         router.push({
-          name: 'HostList'
+          name: 'PatronList'
         })
       }).catch((error) => {
         alert("Error removing document: ", error);

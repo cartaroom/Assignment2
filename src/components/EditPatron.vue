@@ -2,38 +2,38 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Host 
+        Edit Patron 
       </h2>
-      <b-btn><router-link className="link"  :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
+      <b-btn><router-link className="link"  :to="{ name: 'ShowPatron', params: { id: key } }">SHOW PATRON</router-link></b-btn>
       <b-jumbotron>
         <b-form @submit="onSubmit">
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Company Name">
-            <b-form-input id="name" v-model.trim="host.companyName"></b-form-input>
+                    label="Enter Name">
+            <b-form-input id="name" v-model.trim="patron.name"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
                     label="Enter Address">
-              <b-form-input id="address" v-model.trim="host.address"></b-form-input>
+              <b-form-input id="address" v-model.trim="patron.address"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
                     label="Enter Email">
-            <b-form-input id="email" v-model.trim="host.email"></b-form-input>
+            <b-form-input id="email" v-model.trim="patron.email"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
                     label="Enter Phone Number">
-            <b-form-input id="phone" v-model.trim="host.phoneNumber"></b-form-input>
+            <b-form-input id="phone" v-model.trim="patron.phoneNumber"></b-form-input>
           </b-form-group>
           <b-button type="submit" variant="primary">Update</b-button>
         </b-form>
@@ -48,18 +48,18 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'EditHost',
+  name: 'EditPatron',
   data () {
     return {
       key: this.$route.params.id,
-      host: {}
+      patron: {}
     }
   },
   created () {
-    const ref = firebase.firestore().collection('host').doc(this.$route.params.id);
+    const ref = firebase.firestore().collection('patron').doc(this.$route.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
-        this.host = doc.data();
+        this.patron = doc.data();
       } else {
         alert("No such document!");
       }
@@ -68,14 +68,14 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      const updateRef = firebase.firestore().collection('host').doc(this.$route.params.id);
-      updateRef.set(this.host).then((docRef) => {
+      const updateRef = firebase.firestore().collection('patron').doc(this.$route.params.id);
+      updateRef.set(this.patron).then((docRef) => {
         this.key = ''
-        this.host.companyName = ''
-        this.host.address = ''
-        this.host.email = ''
-        this.host.phoneNumber = ''
-        router.push({ name: 'ShowHost', params: { id: this.$route.params.id }})
+        this.patron.name = ''
+        this.patron.address = ''
+        this.patron.email = ''
+        this.patron.phoneNumber = ''
+        router.push({ name: 'ShowPatron', params: { id: this.$route.params.id }})
       })
       .catch((error) => {
         alert("Error adding document: ", error);

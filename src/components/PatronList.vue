@@ -2,10 +2,10 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Host List   
+        Patron List   
       </h2>
-      <b-btn href="#/add-host">ADD HOST</b-btn>
-      <b-table striped hover :items="hosts" :fields="fields">
+      <b-btn href="#/add-patron">ADD Patron</b-btn>
+      <b-table striped hover :items="patrons" :fields="fields">
         <template slot="actions" scope="row">
           <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
         </template>
@@ -20,32 +20,32 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'HostList',
+  name: 'PatronList',
   data () {
     return {
       fields: {
-        companyName: { label: 'Comapany', sortable: true, 'class': 'text-left' },
+        name: { label: 'Name', sortable: true, 'class': 'text-left' },
         actions: { label: 'Action', 'class': 'text-center' }
       },
-      hosts: [],
+      patrons: [],
       errors: [],
-      ref: firebase.firestore().collection('host'),
+      ref: firebase.firestore().collection('patron'),
     }
   },
   created () {
     this.ref.onSnapshot((querySnapshot) => {
-      this.hosts = [];
+      this.patrons = [];
       querySnapshot.forEach((doc) => {
-        this.hosts.push({
+        this.patrons.push({
           key: doc.id,
-          companyName: doc.data().companyName
+          name: doc.data().name
         });
       });
     });
   },
   methods: {
-    details (host) {
-      router.push({ name: 'ShowHost', params: { id: host.key }})
+    details (patron) {
+      router.push({ name: 'ShowPatron', params: { id: patron.key }})
     }
   }
 }
