@@ -4,7 +4,7 @@
       <h2>
         Edit Host 
       </h2>
-      <b-btn><router-link :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
+      <b-btn ><router-link  :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
       <b-jumbotron>
         <b-form @submit="onSubmit">
           <b-form-group id="fieldsetHorizontal"

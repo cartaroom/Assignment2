@@ -6,7 +6,6 @@
       </h2>
       <b-btn href="#/add-host">ADD HOST</b-btn>
       <b-table striped hover :items="hosts" :fields="fields">
-          <div v-for="host in hosts">{{host.companyName }}</div>
         <template slot="actions" scope="row">
           <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
         </template>
@@ -25,7 +24,7 @@ export default {
   data () {
     return {
       fields: {
-        companyName: { label: 'Comapny', sortable: true, 'class': 'text-left' },
+        companyName: { label: 'Comapany', sortable: true, 'class': 'text-left' },
         actions: { label: 'Action', 'class': 'text-center' }
       },
       hosts: [],
@@ -39,7 +38,7 @@ export default {
       querySnapshot.forEach((doc) => {
         this.hosts.push({
           key: doc.id,
-          title: doc.data().title
+          companyName: doc.data().companyName
         });
       });
     });
