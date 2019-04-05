@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div id="app">
+<img alt="CartaRoom logo" href="#/" src="./assets/logo.png">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/host-list">Host</router-link> |
+      <router-link to="/patron-list">Patron</router-link> |
+      <router-link to="/room-list">Room</router-link>
+    </div>
+<router-view></router-view>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+name: 'app',
 }
 </script>
 
