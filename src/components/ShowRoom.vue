@@ -4,7 +4,7 @@
       <h2>
         Edit Host
       </h2>
-      <b-btn href="#/host-list">HOST LIST</b-btn>
+      <b-btn href="#/">HOST LIST</b-btn>
       <b-jumbotron>
         <template slot="header">
           {{host.companyName}}
