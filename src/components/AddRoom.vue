@@ -2,38 +2,42 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Add Host
+        Add Room
       </h2>
-      <b-btn href="#/host-list">HOST LIST</b-btn>
+      <b-btn href="#/room-list">ROOM LIST</b-btn>
       <b-jumbotron>
         <b-form @submit="onSubmit">
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Company Name">
-            <b-form-input id="name" v-model.trim="host.companyName"></b-form-input>
+                    label="Enter Room Owner">
+            <b-form-input id="roomOwner" v-model.trim="room.roomOwner"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Address">
-              <b-form-input id="address" v-model.trim="host.address"></b-form-input>
+                    label="Enter Room Number">
+              <b-form-input id="roomNumber" v-model.trim="room.roomNumber"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Email">
-            <b-form-input id="email" v-model.trim="host.email"></b-form-input>
+                    label="Enter Capacity">
+            <b-form-input id="capacity" v-model.trim="room.capacity"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Phone Number">
-            <b-form-input id="phone" v-model.trim="host.phoneNumber"></b-form-input>
+                    label="Enter Description">
+           <b-form-textarea id="description"
+                         v-model="room.description"
+                         placeholder="Enter something"
+                         :rows="2"
+                         :max-rows="6">{{room.description}}</b-form-textarea>
           </b-form-group>
           <b-button type="submit" variant="primary">Save</b-button>
         </b-form>
@@ -48,24 +52,24 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'AddHost',
+  name: 'AddRoom',
   data () {
     return {
-      ref: firebase.firestore().collection('host'),
-      host: {}
+      ref: firebase.firestore().collection('room'),
+      room: {}
     }
   },
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
 
-      this.ref.add(this.host).then((docRef) => {
-        this.host.companyName = ''
-        this.host.address = ''
-        this.host.email = ''
-        this.host.phoneNumber = ''
+      this.ref.add(this.room).then((docRef) => {
+        this.room.roomOwner = ''
+        this.room.roomNumber = ''
+        this.room.capacity = ''
+        this.room.description = ''
         router.push({
-          name: 'HostList'
+          name: 'RoomList'
         })
       })
       .catch((error) => {

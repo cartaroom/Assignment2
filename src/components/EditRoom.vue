@@ -2,38 +2,42 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Host 
+        Edit Room
       </h2>
-      <b-btn><router-link className="link"  :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
+      <b-btn><router-link className="link"  :to="{ name: 'ShowRoom', params: { id: key } }">SHOW ROOM</router-link></b-btn>
       <b-jumbotron>
         <b-form @submit="onSubmit">
-          <b-form-group id="fieldsetHorizontal"
+         <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Company Name">
-            <b-form-input id="name" v-model.trim="host.companyName"></b-form-input>
+                    label="Enter Room Owner">
+            <b-form-input id="roomOwner" v-model.trim="room.roomOwner"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Address">
-              <b-form-input id="address" v-model.trim="host.address"></b-form-input>
+                    label="Enter Room Number">
+              <b-form-input id="roomNumber" v-model.trim="room.roomNumber"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Email">
-            <b-form-input id="email" v-model.trim="host.email"></b-form-input>
+                    label="Enter Capacity">
+            <b-form-input id="capacity" v-model.trim="room.capacity"></b-form-input>
           </b-form-group>
           <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
-                    label="Enter Phone Number">
-            <b-form-input id="phone" v-model.trim="host.phoneNumber"></b-form-input>
+                    label="Enter Description">
+           <b-form-textarea id="description"
+                         v-model="room.description"
+                         placeholder="Enter something"
+                         :rows="2"
+                         :max-rows="6">{{room.description}}</b-form-textarea>
           </b-form-group>
           <b-button type="submit" variant="primary">Update</b-button>
         </b-form>
@@ -48,18 +52,18 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'EditHost',
+  name: 'EditRoom',
   data () {
     return {
       key: this.$route.params.id,
-      host: {}
+      room: {}
     }
   },
   created () {
-    const ref = firebase.firestore().collection('host').doc(this.$route.params.id);
+    const ref = firebase.firestore().collection('room').doc(this.$route.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
-        this.host = doc.data();
+        this.room = doc.data();
       } else {
         alert("No such document!");
       }
@@ -68,14 +72,14 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      const updateRef = firebase.firestore().collection('host').doc(this.$route.params.id);
-      updateRef.set(this.host).then((docRef) => {
+      const updateRef = firebase.firestore().collection('room').doc(this.$route.params.id);
+      updateRef.set(this.room).then((docRef) => {
         this.key = ''
-        this.host.companyName = ''
-        this.host.address = ''
-        this.host.email = ''
-        this.host.phoneNumber = ''
-        router.push({ name: 'ShowHost', params: { id: this.$route.params.id }})
+        this.room.roomOwner = ''
+        this.room.roomNumber = ''
+        this.room.capacity = ''
+        this.room.description = ''
+        router.push({ name: 'ShowRoom', params: { id: this.$route.params.id }})
       })
       .catch((error) => {
         alert("Error adding document: ", error);

@@ -2,10 +2,10 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Host List   
+        Room List   
       </h2>
-      <b-btn href="#/add-host">ADD HOST</b-btn>
-      <b-table striped hover :items="hosts" :fields="fields">
+      <b-btn href="#/add-room">ADD ROOM</b-btn>
+      <b-table striped hover :items="rooms" :fields="fields">
         <template slot="actions" scope="row">
           <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
         </template>
@@ -20,32 +20,34 @@ import firebase from '../Firebase'
 import router from '../router'
 
 export default {
-  name: 'HostList',
+  name: 'RoomList',
   data () {
     return {
       fields: {
-        companyName: { label: 'Comapany', sortable: true, 'class': 'text-left' },
+        owner: { label: 'Room Owner', sortable: true, 'class': 'text-left' },
+        roomNumber: { label: 'Room Number', sortable: true, 'class': 'text-left' },
         actions: { label: 'Action', 'class': 'text-center' }
       },
-      hosts: [],
+      rooms: [],
       errors: [],
-      ref: firebase.firestore().collection('host'),
+      ref: firebase.firestore().collection('room'),
     }
   },
   created () {
     this.ref.onSnapshot((querySnapshot) => {
-      this.hosts = [];
+      this.rooms = [];
       querySnapshot.forEach((doc) => {
-        this.hosts.push({
+        this.rooms.push({
           key: doc.id,
-          companyName: doc.data().companyName
+          owner: doc.data().roomOwner,
+          roomNumber: doc.data().roomNumber
         });
       });
     });
   },
   methods: {
-    details (host) {
-      router.push({ name: 'ShowHost', params: { id: host.key }})
+    details (room) {
+      router.push({ name: 'ShowRoom', params: { id: room.key }})
     }
   }
 }
