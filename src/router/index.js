@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router'
-import BoardList from '@/components/HostList'
-import ShowBoard from '@/components/ShowHost'
-import AddBoard from '@/components/AddHost'
-import EditBoard from '@/components/EditHost'
+import HostList from '@/components/HostList'
+import ShowHost from '@/components/ShowHost'
+import AddHost from '@/components/AddHost'
+import EditHost from '@/components/EditHost'
 
 export default new VueRouter({
     routes: [

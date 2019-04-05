@@ -2,10 +2,11 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Host List
-        <b-link href="#/add-host">(Add Host)</b-link>
+        Host List   
       </h2>
+      <b-btn href="#/add-host">ADD HOST</b-btn>
       <b-table striped hover :items="hosts" :fields="fields">
+          <div v-for="host in hosts">{{host.companyName }}</div>
         <template slot="actions" scope="row">
           <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
         </template>
@@ -24,7 +25,7 @@ export default {
   data () {
     return {
       fields: {
-        title: { label: 'Title', sortable: true, 'class': 'text-left' },
+        companyName: { label: 'Comapny', sortable: true, 'class': 'text-left' },
         actions: { label: 'Action', 'class': 'text-center' }
       },
       hosts: [],
