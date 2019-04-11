@@ -29,20 +29,20 @@
 
 <script>
 
-import firebase from '../Firebase'
-import router from '../router'
+    import firebase from '../Firebase'
+    import router from '../router'
 
-export default {
-  name: 'ShowRoom',
-  data () {
-    return {
-      key: '',
-      room: {}
-    }
+    export default {
+        name: 'ShowRoom',
+        data() {
+            return {
+                key: '',
+                room: {}
+            }
   },
 
   //this goes to firebase with table named "room"
-  //if exists id exists, it will update the room in firebase with the current id. 
+  //if exists id exists, it will update the room in firebase with the current id.
   created () {
     const ref = firebase.firestore().collection('room').doc(this.$route.params.id);
     ref.get().then((doc) => {
@@ -84,11 +84,12 @@ export default {
 
 <!--CSS for button and grey background -->
 <style>
-  .jumbotron {
-    padding: 2rem;
-  }
-  .edit-btn {
-    margin-right: 20px;
-    width: 70px;
-  }
+    .jumbotron {
+        padding: 2rem;
+    }
+
+    .edit-btn {
+        margin-right: 20px;
+        width: 70px;
+    }
 </style>

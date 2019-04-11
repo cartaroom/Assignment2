@@ -51,13 +51,13 @@
 import firebase from '../Firebase'
 import router from '../router'
 
-export default {
-  name: 'EditPatron',
-  data () {
-    return {
-      key: this.$route.params.id,
-      patron: {}
-    }
+    export default {
+        name: 'EditPatron',
+        data() {
+            return {
+                key: this.$route.params.id,
+                patron: {}
+            }
   },
   created () {
     const ref = firebase.firestore().collection('patron').doc(this.$route.params.id);
@@ -91,10 +91,11 @@ export default {
 </script>
 //This is CSS for the grey background
 <style>
-  .jumbotron {
-    padding: 2rem;
-  }
-  .link {
-  color: #FFF;
-}
+    .jumbotron {
+        padding: 2rem;
+    }
+
+    .link {
+        color: #FFF;
+    }
 </style>

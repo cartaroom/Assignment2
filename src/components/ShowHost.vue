@@ -28,16 +28,17 @@
 
 <script>
 
-import firebase from '../Firebase'
-import router from '../router'
+    import firebase from '../Firebase'
+    import router from '../router'
 
-export default {
-  name: 'ShowHost',
-  data () {
-    return {
-      key: '',
-      host: {}
-    }
+    export default {
+        name: 'ShowHost',
+        data() {
+            return {
+                key: '',
+                host: {}
+            }
+
   },
   
   //this goes to firebase with table named "host"
@@ -83,11 +84,12 @@ export default {
 
 <!--CSS for button and grey background -->
 <style>
-  .jumbotron {
-    padding: 2rem;
-  }
-  .edit-btn {
-    margin-right: 20px;
-    width: 70px;
-  }
+    .jumbotron {
+        padding: 2rem;
+    }
+
+    .edit-btn {
+        margin-right: 20px;
+        width: 70px;
+    }
 </style>

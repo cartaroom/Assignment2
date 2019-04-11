@@ -55,13 +55,13 @@
 import firebase from '../Firebase'
 import router from '../router'
 
-export default {
-  name: 'EditRoom',
-  data () {
-    return {
-      key: this.$route.params.id,
-      room: {}
-    }
+    export default {
+        name: 'EditRoom',
+        data() {
+            return {
+                key: this.$route.params.id,
+                room: {}
+            }
   },
   created () {
     const ref = firebase.firestore().collection('room').doc(this.$route.params.id);
@@ -95,10 +95,11 @@ export default {
 </script>
 //This is CSS for the grey background
 <style>
-  .jumbotron {
-    padding: 2rem;
-  }
-  .link {
-  color: #FFF;
-}
+    .jumbotron {
+        padding: 2rem;
+    }
+
+    .link {
+        color: #FFF;
+    }
 </style>
