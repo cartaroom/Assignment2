@@ -48,12 +48,14 @@ export default {
     });
   },
   methods: {
+    //finds host by id in database
     edithost (id) {
       router.push({
         name: 'EditHost',
         params: { id: id }
       })
     },
+    //deletes host by id in database
     deletehost (id) {
       firebase.firestore().collection('host').doc(id).delete().then(() => {
         router.push({

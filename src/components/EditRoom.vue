@@ -70,6 +70,7 @@ export default {
     });
   },
   methods: {
+      //on submit, edits data of room back to roomlist via id
     onSubmit (evt) {
       evt.preventDefault()
       const updateRef = firebase.firestore().collection('room').doc(this.$route.params.id);

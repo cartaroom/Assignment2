@@ -66,6 +66,7 @@ export default {
     });
   },
   methods: {
+    //on submit, edits data of host back to hostlist via id
     onSubmit (evt) {
       evt.preventDefault()
       const updateRef = firebase.firestore().collection('host').doc(this.$route.params.id);

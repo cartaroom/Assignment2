@@ -49,12 +49,14 @@ export default {
     });
   },
   methods: {
+    //finds room by id in database
     editroom (id) {
       router.push({
         name: 'EditRoom',
         params: { id: id }
       })
     },
+    //deletes room by id in database
     deleteroom (id) {
       firebase.firestore().collection('room').doc(id).delete().then(() => {
         router.push({

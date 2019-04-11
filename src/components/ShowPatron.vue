@@ -48,12 +48,14 @@ export default {
     });
   },
   methods: {
+    //finds patron by id in database
     editpatron (id) {
       router.push({
         name: 'EditPatron',
         params: { id: id }
       })
     },
+    //deletes patron by id in database
     deletepatron (id) {
       firebase.firestore().collection('patron').doc(id).delete().then(() => {
         router.push({

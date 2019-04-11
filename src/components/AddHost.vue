@@ -56,6 +56,7 @@ export default {
     }
   },
   methods: {
+    //on submit, pushes data of new host to HostList in database
     onSubmit (evt) {
       evt.preventDefault()
 

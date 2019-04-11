@@ -66,6 +66,7 @@ export default {
     });
   },
   methods: {
+    //on submit, edits data of patron back to patronlist via id
     onSubmit (evt) {
       evt.preventDefault()
       const updateRef = firebase.firestore().collection('patron').doc(this.$route.params.id);
