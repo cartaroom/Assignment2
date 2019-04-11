@@ -4,8 +4,11 @@
       <h2>
         Edit Room
       </h2>
-      <b-btn><router-link className="link"  :to="{ name: 'ShowRoom', params: { id: key } }">SHOW ROOM</router-link></b-btn>
+      <b-btn>
+	  //Links to ShowRoom
+	  <router-link className="link"  :to="{ name: 'ShowRoom', params: { id: key } }">SHOW ROOM</router-link></b-btn>
       <b-jumbotron>
+	  //Form to submit Edit to the Room
         <b-form @submit="onSubmit">
          <b-form-group id="fieldsetHorizontal"
                     horizontal
@@ -48,6 +51,7 @@
 
 <script>
 
+// This is the links the routing and firebase files
 import firebase from '../Firebase'
 import router from '../router'
 
@@ -70,6 +74,7 @@ export default {
     });
   },
   methods: {
+  //Events that happen onSubmit
     onSubmit (evt) {
       evt.preventDefault()
       const updateRef = firebase.firestore().collection('room').doc(this.$route.params.id);
@@ -88,6 +93,7 @@ export default {
   }
 }
 </script>
+//This is CSS for the grey background
 <style>
   .jumbotron {
     padding: 2rem;

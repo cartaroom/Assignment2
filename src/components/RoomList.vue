@@ -21,18 +21,32 @@ import router from '../router'
 
 export default {
   name: 'RoomList',
+  //returns the data from the database
   data () {
     return {
       fields: {
+
+        //Room owner name column
         owner: { label: 'Room Owner', sortable: true, 'class': 'text-left' },
+
+        //room number column
         roomNumber: { label: 'Room Number', sortable: true, 'class': 'text-left' },
+
+
+        //action column
         actions: { label: 'Action', 'class': 'text-center' }
       },
+
+      //array of room data that will populate
       rooms: [],
       errors: [],
+
+      //gets the room table from the firebase database
       ref: firebase.firestore().collection('room'),
     }
   },
+
+  //pulls the data from the firebase database
   created () {
     this.ref.onSnapshot((querySnapshot) => {
       this.rooms = [];
@@ -45,6 +59,8 @@ export default {
       });
     });
   },
+
+  //function that shows the room finding the the specific id
   methods: {
     details (room) {
       router.push({ name: 'ShowRoom', params: { id: room.key }})

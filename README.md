@@ -10,20 +10,15 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Project information
 ```
-npm run build
-```
+We have implemented Vue as our frontend, and firebase is our database.  We have not implemeted a RESTish backend
 
-### Run your tests
-```
-npm run test
-```
+In our database, we have tables for host, patrons, and rooms.  You are able to put a room into the database, and you are able to see what the different patrons and hosts.
 
-### Lints and fixes files
-```
-npm run lint
-```
+The *list files are the
+views that shows display either host, patron, or room.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The RESTish backend would run through another server, but we have not had time to implement it.
+We plan to follow this link during project term to implement a RESTish backend https://firebase.google.com/docs/firestore/use-rest-api
+```
