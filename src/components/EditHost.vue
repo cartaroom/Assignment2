@@ -4,8 +4,11 @@
       <h2>
         Edit Host 
       </h2>
-      <b-btn><router-link className="link"  :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
+      <b-btn>
+	  //Links to ShowHost
+	  <router-link className="link"  :to="{ name: 'ShowHost', params: { id: key } }">SHOW HOST</router-link></b-btn>
       <b-jumbotron>
+	  //Form to submit Edits to Hosts
         <b-form @submit="onSubmit">
           <b-form-group id="fieldsetHorizontal"
                     horizontal
@@ -44,6 +47,7 @@
 
 <script>
 
+//Connects all files to each other
 import firebase from '../Firebase'
 import router from '../router'
 
@@ -65,6 +69,7 @@ export default {
       }
     });
   },
+  //The Methods Used for the Events
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
@@ -84,6 +89,7 @@ export default {
   }
 }
 </script>
+//The CSS for the grey background
 <style>
   .jumbotron {
     padding: 2rem;

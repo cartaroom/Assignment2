@@ -4,8 +4,11 @@
       <h2>
         Edit Patron 
       </h2>
-      <b-btn><router-link className="link"  :to="{ name: 'ShowPatron', params: { id: key } }">SHOW PATRON</router-link></b-btn>
+      <b-btn>
+	  //Links to the ShowPatron
+	  <router-link className="link"  :to="{ name: 'ShowPatron', params: { id: key } }">SHOW PATRON</router-link></b-btn>
       <b-jumbotron>
+	  //Form to submit Edits to Patrons
         <b-form @submit="onSubmit">
           <b-form-group id="fieldsetHorizontal"
                     horizontal
@@ -44,6 +47,7 @@
 
 <script>
 
+//Links the firebase and router files
 import firebase from '../Firebase'
 import router from '../router'
 
@@ -65,6 +69,7 @@ export default {
       }
     });
   },
+  //Methods used on the event trigger(onSubmit)
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
@@ -84,6 +89,7 @@ export default {
   }
 }
 </script>
+//This is CSS for the grey background
 <style>
   .jumbotron {
     padding: 2rem;
