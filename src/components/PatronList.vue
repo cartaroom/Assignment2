@@ -21,17 +21,27 @@ import router from '../router'
 
 export default {
   name: 'PatronList',
+  //returns the patron data from the database
   data () {
     return {
+      //what data the table will populate with
       fields: {
+
+        //patron name column
         name: { label: 'Name', sortable: true, 'class': 'text-left' },
+
+        //patron action column
         actions: { label: 'Action', 'class': 'text-center' }
       },
+
+      //array of patron data
       patrons: [],
       errors: [],
+      //gets the patron table from the firebase database
       ref: firebase.firestore().collection('patron'),
     }
   },
+  //pulls the data from the firebase database
   created () {
     this.ref.onSnapshot((querySnapshot) => {
       this.patrons = [];
@@ -43,6 +53,8 @@ export default {
       });
     });
   },
+
+  //function that shows the patron finding the the specific id
   methods: {
     details (patron) {
       router.push({ name: 'ShowPatron', params: { id: patron.key }})

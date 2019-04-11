@@ -10,9 +10,9 @@ const config = {
     projectId: "cartaroom-114ed",
     storageBucket: "cartaroom-114ed.appspot.com",
     messagingSenderId: "739947088985"
+
 };
 firebase.initializeApp(config);
-
 firebase.firestore().settings(settings);
 
 export default firebase;
