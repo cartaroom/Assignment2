@@ -7,7 +7,7 @@ const config = {
    apiKey: "",
    authDomain: "",
    databaseURL: "",
-   projectId: "cartaroom-114ed",
+   projectId: "",
    storageBucket: "",
    messagingSenderId: ""
 };
